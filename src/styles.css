@@ -35,6 +35,7 @@ body {
 }
 .img-card {
   width: 100%;
+  cursor: all-scroll;
 }
 .input {
   margin-top: 25px;
@@ -62,4 +63,7 @@ body {
   opacity: 0.5;
   padding: 2px;
   cursor: pointer;
+}
+#dowmload-next-imeges {
+  height: 200px;
 }

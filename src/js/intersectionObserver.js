@@ -1,18 +1,18 @@
 import getRefs from './getRefs';
 import apiService from './apiService';
 import onLoadMore from './onLoadMore';
-/* const { entries } = require("core-js/fn/array"); */
+import renderCard from './renderCard';
+
+const { entries } = require("core-js");
 
 const api = new apiService();
+const refs = getRefs();
 
-export default function intersectionObserver(){ 
+export default function intersectionObserver() { 
      
-    const refs = getRefs();
-
     const onEntry = entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting && api.img !== "") {
-            /* onLoadMore(); */
               api.fetchApi().then(renderCard)  
             }
 

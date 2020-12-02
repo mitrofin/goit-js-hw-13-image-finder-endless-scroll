@@ -10,7 +10,7 @@ import onLoadMore from './js/onLoadMore';
 import onFetchError from './js/onFetchError';
 import renderCard from './js/renderCard';
 import onClickImg from './js/modalImg';
-import intersectionObserver from './js/intersectionObserver';
+import intersectionObserverTo from './js/intersectionObserver';
 
 const debounce = require('debounce');
 const api = new apiService();
@@ -34,19 +34,32 @@ function onSearch(event) {
     }
     
     try {
+            const onEntry = entries => {
+                entries.forEach(entry => {
+                if (entry.isIntersecting && api.img !== "") {
+                    api.fetchApi().then(renderCard)
+            }
+        });
+    };
+    const option = {
+        rootMargin:'200px',
+    };
+
+    const observer = new IntersectionObserver(onEntry, option);
+    observer.observe(refs.pointForDownloadNextImages);
+        
     /* api.fetchApi().then(renderCard) */
-        onLoadMore()
-        /* intersectionObserver()  */ 
+        /* intersectionObserverTo() */  
     } catch (error) {
         onFetchError()
     }
 }
 
 
-const onEntry = entries => {
+/* const onEntry = entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting && api.img !== "") {
-            onLoadMore();
+            api.fetchApi().then(renderCard)
         }
 
     });
@@ -57,6 +70,6 @@ const option = {
 
 const observer = new IntersectionObserver(onEntry, option);
 
-observer.observe(refs.pointForDownloadNextImages);
+observer.observe(refs.pointForDownloadNextImages); */
 
 

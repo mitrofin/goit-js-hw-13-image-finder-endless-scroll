@@ -1,4 +1,3 @@
-import showError from './showError';
 
 export default class apiService {
     constructor() {
@@ -17,7 +16,7 @@ export default class apiService {
         return fetch(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${this.searchImg}&page=${this.startPage}&per_page=${this.per_page}&key=${MY_KEY}`)
             .then(response => response.json())
             .then(e => {
-                console.log(e);
+                /* console.log(e); */
                
             this.inrementPage(); 
                 return e;
